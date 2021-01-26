@@ -1,15 +1,21 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:jlpt/contants.dart';
+import 'package:jlpt/constants.dart';
 import 'package:jlpt/data/kanjilist.dart';
 import 'package:jlpt/models/kanjibasic.dart';
 import 'package:jlpt/screens/kanjibasic/components/body.dart';
 
 /// KanjiBasic Screen
-class KanjiBasicScreen extends StatelessWidget {
+class KanjiBasicScreen extends StatefulWidget {
   final Future<List<KanjiBasic>> kanjis;
 
   const KanjiBasicScreen({Key key, this.kanjis}) : super(key: key);
 
+  @override
+  _KanjiBasicScreenState createState() => _KanjiBasicScreenState();
+}
+
+class _KanjiBasicScreenState extends State<KanjiBasicScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +30,11 @@ class KanjiBasicScreen extends StatelessWidget {
             return Text(snapshot.error);
           }
           // By default, show a loading spinner.
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.white,
+            ),
+          );
         },
       ),
     );
@@ -34,12 +44,12 @@ class KanjiBasicScreen extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: dBackgroundColor,
+      backgroundColor: dPrimaryColor,
       leading: IconButton(
         padding: EdgeInsets.only(left: defaultPadding),
         icon: Icon(
           Icons.arrow_back,
-          color: Colors.black,
+          color: Colors.white,
         ),
         onPressed: () {
           Navigator.pop(context);
@@ -48,7 +58,7 @@ class KanjiBasicScreen extends StatelessWidget {
       centerTitle: false,
       title: Text(
         "Trở lại",
-        style: Theme.of(context).textTheme.bodyText2,
+        style: TextStyle(color: Colors.white),
       ),
     );
   }

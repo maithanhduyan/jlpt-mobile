@@ -1,15 +1,25 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jlpt/contants.dart';
-import 'package:jlpt/models/kanjibasic.dart';
+import 'package:jlpt/constants.dart';
+import 'package:jlpt/screens/home/components/drawer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  final String title ;
+
+  const HomeScreen({Key key, this.title}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() => _HomeScreenState(title);
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+final String title ;
+
+  _HomeScreenState(this.title);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
+      drawer: NavigationDrawer(),
       backgroundColor: dPrimaryColor,
       body: Center(),
       floatingActionButton: FloatingActionButton(
@@ -22,40 +32,16 @@ class HomeScreen extends StatelessWidget {
   AppBar buildAppBar() {
     return AppBar(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       actions: <Widget>[
         IconButton(
-          icon: SvgPicture.asset("assets/icons/notification.svg"),
+          icon: Icon(Icons.ac_unit),
           onPressed: () {},
         ),
       ],
-      title: Text('Back'),
+      title: Text("$title",textAlign: TextAlign.center,),
     );
   }
 }
 
-class KanjiList extends StatelessWidget {
-  final List<KanjiBasic> kanjis;
 
-  KanjiList({Key key, this.kanjis}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        childAspectRatio: 1,
-      ),
-      padding: const EdgeInsets.all(0),
-      itemCount: kanjis.length,
-      itemBuilder: (context, index) {
-        return Container(
-          padding: const EdgeInsets.all(10),
-          child: Text(""),
-        );
-      },
-    );
-  }
-}
