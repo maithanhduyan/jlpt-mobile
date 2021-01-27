@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jlpt/constants.dart';
+import 'package:jlpt/screens/home/components/body.dart';
 import 'package:jlpt/screens/home/components/drawer.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String title ;
+  final String title;
 
   const HomeScreen({Key key, this.title}) : super(key: key);
   @override
@@ -11,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-final String title ;
+  final String title;
 
   _HomeScreenState(this.title);
 
@@ -21,11 +22,7 @@ final String title ;
       appBar: buildAppBar(),
       drawer: NavigationDrawer(),
       backgroundColor: dPrimaryColor,
-      body: Center(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.ac_unit_rounded),
-      ),
+      body: HomeBody(),
     );
   }
 
@@ -35,13 +32,14 @@ final String title ;
       centerTitle: true,
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.ac_unit),
+          icon: Icon(Icons.search),
           onPressed: () {},
         ),
       ],
-      title: Text("$title",textAlign: TextAlign.center,),
+      title: Text(
+        "$title",
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }
-
-

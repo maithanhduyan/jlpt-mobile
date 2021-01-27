@@ -13,13 +13,23 @@ class NavigationDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: dPrimaryColor,
             ),
-            child: Text(
-              'Tiếng Nhật Vui',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: Container(
+              child: Text("a"),
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text("Hiragana"),
+            onTap: () {
+              Navigator.pushNamed(context, Routes.kanjibasic);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text("Katakana"),
+            onTap: () {
+              Navigator.pushNamed(context, Routes.kanjibasic);
+            },
           ),
           ListTile(
             leading: Icon(Icons.ac_unit),
